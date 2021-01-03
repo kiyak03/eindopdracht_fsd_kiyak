@@ -1,13 +1,9 @@
 import React from 'react'
-import {Link, useHistory} from 'react-router-dom'
 
 function Home(){
-    const history = useHistory();
-
-    function handleClick(){
-
-    }
-
+    return(
+        <h1>dit is de Home pagina</h1>
+    );
 }
 
 export default Home;

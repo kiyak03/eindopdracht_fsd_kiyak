@@ -1,9 +1,10 @@
 import React from 'react'
-import './App.css';
-import {BrowserRouter as Router,Switch,Route,} from 'react-router-dom';
+// import './App.css';
+import {BrowserRouter as Router, Switch, Route,} from 'react-router-dom';
+
 import TopMenu from './components/TopMenu'
 import Home from './Pages/Home'
-import Upload from './Pages/Uplaod'
+import Upload from './Pages/Upload'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
 import Contact from './Pages/Contact'
