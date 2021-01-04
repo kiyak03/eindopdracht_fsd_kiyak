@@ -2,7 +2,7 @@ import React from 'react'
 
 function Home(){
     return(
-        <h1>dit is de Home pagina</h1>
+        <h1>Welkom  dit is de Home pagina!</h1>
     );
 }
 
