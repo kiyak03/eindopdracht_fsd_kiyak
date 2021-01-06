@@ -1,28 +1,28 @@
-* {
-    margin: 0;
-    padding: 0;
-}
+/** {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
 
-.topmenu-container {
-    width: 500px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+/*.topmenu-container {*/
+/*    width: 500px;*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*}*/
 
-nav {
-    width: 100%;
-    background-color: darkgray;
-    display: flex;
-    justify-content: flex-end;
-    height: 60px;
-}
+/*nav {*/
+/*    width: 100%;*/
+/*    background-color: darkgray;*/
+/*    display: flex;*/
+/*    justify-content: flex-end;*/
+/*    height: 60px;*/
+/*}*/
 
-ul {
-    list-style-type: none;
-    flex-basis: 550px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+/*ul {*/
+/*    list-style-type: none;*/
+/*    flex-basis: 550px;*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*}*/
 

@@ -1,18 +1,19 @@
 import React from 'react'
+import './NavBar.css'
 import {NavLink} from "react-router-dom";
-import PageHeader from "./PageHeader";
+import NavBarTitle from "./NavBarTitle";
 import Logo from "../assets/logo_hexagon_white.png";
 
-function TopMenu() {
+function NavBar() {
     return (
         <>
-            <nav className="topmenu">
-                <PageHeader icon={Logo} title="Hexagon"/>
-                <div className="topmenu-container">
+            <nav>
+                <NavLink to="/" exact activeClassName="active-link">
+                    <NavBarTitle icon={Logo} title="Hexagon"/>
+                </NavLink>
+                <div className="navbar-container">
                     <ul>
-                        <il>
-                            <NavLink to="/" exact activeClassName="active-link">Home</NavLink>
-                        </il>
+                        <div className="navbar-links">
                         <il>
                             <NavLink to="/upload"  activeClassName="active-link">Upload</NavLink>
                         </il>
@@ -25,6 +26,7 @@ function TopMenu() {
                         <il>
                             <NavLink to="/contact"  activeClassName="active-link">Contact</NavLink>
                         </il>
+                        </div>
                     </ul>
                 </div>
 
@@ -35,4 +37,4 @@ function TopMenu() {
     )
 }
 
-export default TopMenu;
+export default NavBar;

@@ -1,0 +1,35 @@
+nav{
+    background: darkgray ;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    /*!*padding: 0.5rem calc((100vw - 1000px) / 2);*!*/
+    /*z-index: 10;*/
+}
+
+ul {
+    list-style-type: none;
+    flex-basis: 550px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-title {
+    width: 100%;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    /*padding: 20px 10px;*/
+    height: 20px;
+}
+
+img{
+    height: 100px;
+    width: 100px;
+    padding: 10px 10px;
+}
+
+.active-link {
+    border-bottom: 2px solid white;
+}

@@ -1,12 +1,13 @@
 import React from 'react'
 
-function PageHeader({ icon, title }) {
+function NavBarTitle({ icon, title }) {
     return (
-        <div className="title-container">
+        <div className="navbar-title">
             <img src={icon} alt={title} />
             <h1>{title}</h1>
+
         </div>
     );
 }
 
-export default PageHeader;
+export default NavBarTitle;
