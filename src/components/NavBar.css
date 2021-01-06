@@ -1,18 +1,20 @@
 nav{
+    width: 100%;
     background: darkgray ;
     height: 100px;
     display: flex;
     justify-content: space-between;
-    /*!*padding: 0.5rem calc((100vw - 1000px) / 2);*!*/
-    /*z-index: 10;*/
+    /*padding: 0.5rem calc((100vw - 1000px) / 2);*/
+    z-index: 10;
 }
 
-ul {
+.navbar-container {
     list-style-type: none;
-    flex-basis: 550px;
+    flex-basis: 600px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
 
 .navbar-title {

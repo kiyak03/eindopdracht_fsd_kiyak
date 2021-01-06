@@ -13,20 +13,21 @@ function NavBar() {
                 </NavLink>
                 <div className="navbar-container">
                     <ul>
-                        <div className="navbar-links">
                         <il>
                             <NavLink to="/upload"  activeClassName="active-link">Upload</NavLink>
                         </il>
+
                         <il>
                             <NavLink to="/login"  activeClassName="active-link">Login</NavLink>
                         </il>
+
                         <il>
                             <NavLink to="/register"  activeClassName="active-link">Register</NavLink>
                         </il>
+
                         <il>
                             <NavLink to="/contact"  activeClassName="active-link">Contact</NavLink>
                         </il>
-                        </div>
                     </ul>
                 </div>
 
