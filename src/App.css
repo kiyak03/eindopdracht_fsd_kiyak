@@ -3,26 +3,12 @@
 /*    padding: 0;*/
 /*}*/
 
-/*.topmenu-container {*/
-/*    width: 500px;*/
-/*    display: flex;*/
-/*    justify-content: space-between;*/
-/*    align-items: center;*/
-/*}*/
+p {
+    display: flex;
+    justify-content: center;
+    width: 1000px;
+}
 
-/*nav {*/
-/*    width: 100%;*/
-/*    background-color: darkgray;*/
-/*    display: flex;*/
-/*    justify-content: flex-end;*/
-/*    height: 60px;*/
-/*}*/
-
-/*ul {*/
-/*    list-style-type: none;*/
-/*    flex-basis: 550px;*/
-/*    display: flex;*/
-/*    justify-content: space-between;*/
-/*    align-items: center;*/
-/*}*/
-
+#demo-button{
+    background-color: red;
+}
