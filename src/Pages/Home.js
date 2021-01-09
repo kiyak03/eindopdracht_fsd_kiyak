@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 // import Logo from "../assets/logo_hexagon_white.png"
 import '../App.css'
 
+
 function Home(){
     return(
         <div>

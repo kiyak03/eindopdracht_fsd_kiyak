@@ -1,0 +1,62 @@
+:root {
+    --menu-bar-width: 60px;
+    --menu-bar-height: 10px;
+}
+
+#menu {
+    background-color: #D84282;
+    position: relative;
+    width: var(--menu-bar-width);
+    height: var(--menu-bar-height);
+    transition: background-color .1s ease;
+}
+
+#menu::before,
+#menu::after {
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: #D84282;
+    width: var(--menu-bar-width);
+    height: var(--menu-bar-height);
+    transition: all .4s ease;
+}
+
+#menu::before {
+    top: -20px;
+    left: 0;
+}
+
+#menu::after {
+    bottom: -20px;
+    left: 0;
+}
+
+#container {
+    /*border: 1px solid red;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--menu-bar-width);
+    /* shorthand voor:
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 0;
+    padding-right: 0;
+     */
+    padding: 20px 0;
+}
+
+#container:hover #menu {
+    background-color: transparent;
+}
+
+#container:hover #menu::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+#container:hover #menu::after {
+    transform: rotate(-45deg);
+    bottom: 0;
+}

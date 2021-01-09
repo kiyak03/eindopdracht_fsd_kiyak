@@ -3,6 +3,8 @@ import './NavBar.css'
 import {NavLink} from "react-router-dom";
 // import NavBarTitle from "./NavBarTitle";
 import Logo from "../assets/logo_hexagon_white.png";
+import BurgerMenu from "./BurgerMenu";
+// import BurgerMenu from "./BurgerMenu";
 
 function NavBar() {
     const [burgerMenu, setBurgerMenu] = useState(false);
@@ -36,6 +38,9 @@ function NavBar() {
                             <NavLink to="/contact"  activeClassName="active-link">Contact</NavLink>
                         </il>
                     </ul>
+
+                <BurgerMenu onClick={() => setBurgerMenu(!burgerMenu)}/>
+
 
 
 
