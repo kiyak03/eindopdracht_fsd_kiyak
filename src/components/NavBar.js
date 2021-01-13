@@ -2,12 +2,16 @@ import React, {useState} from 'react'
 import './NavBar.css'
 import {NavLink} from "react-router-dom";
 // import NavBarTitle from "./NavBarTitle";
-import Logo from "../assets/logo_hexagon_white.png";
+import Logo from "../assets/HEXAGON_TEXT_250x.png";
 import BurgerMenu from "./BurgerMenu";
 // import BurgerMenu from "./BurgerMenu";
 
 function NavBar() {
-    const [burgerMenu, setBurgerMenu] = useState(false);
+    const [burgerMenuSlider, setBurgerMenuSlider] = useState(false);
+
+    const openBurgerMenu =() =>{
+
+    }
 
     return (
         <div>
@@ -39,7 +43,7 @@ function NavBar() {
                         </il>
                     </ul>
 
-                <BurgerMenu onClick={() => setBurgerMenu(!burgerMenu)}/>
+                <BurgerMenu className="burger-menu" onClick={openBurgerMenu}/>
 
 
 

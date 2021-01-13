@@ -60,3 +60,37 @@
     transform: rotate(-45deg);
     bottom: 0;
 }
+
+#container{
+    display: none;
+}
+
+@media screen and (max-width: 768px){
+    #container{
+        display: block;
+    }
+    #logo{
+        width: 45%;
+        height: 45%;
+
+    }
+    .navbar-links {
+        position: absolute;
+        display: block;
+        top: 11vh;
+        right: 0;
+        height: 100vh;
+        background-color: darkorchid;
+        padding: 40px;
+        width: 50%;
+        text-align: center;
+        border-bottom: 2px solid black;
+        transform: translateX(500px); /*menu is nu 500px rechts in het scherm*/
+    }
+    .navbar-links {
+        padding: 25px;
+        vertical-align: center;
+
+    }
+}
+
