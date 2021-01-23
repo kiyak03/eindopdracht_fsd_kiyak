@@ -1,90 +1,91 @@
-import React, {useState} from 'react'
-import { useForm } from 'react-hook-form';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { ReactComponent as Spinner} from '../assets/refresh.svg';
+import './Register.modules.css'
 
-function Register(){
+function SignUp() {
+    // state voor invoervelden (omdat het formulier met Controlled Components werkt!)
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    // state voor gebruikers-feedback
+    const [createUserSuccess, setCreateUserSuccess] = useState(false);
+    const [loading, toggleLoading] = useState(false);
+    const [error, setError] = useState('');
     const[checkedTerms,toggleCheckedTerms] = useState(false);
-    const { register, watch, handleSubmit, errors } = useForm();
 
-    const onSuccess = (formData) => {
-        console.log(formData)
+    async function onSubmit(event) {
+        toggleLoading(true);
+        setError('');
+        // Als je react-hook-form gebruikt hoeft dit niet, dat gebeurt dan automatisch
+        event.preventDefault();
+
+        try {
+            // 1. Gebruik de data uit het formulier om een gebruiker aan te maken (check documentatie!)
+            const response = await axios.post('https://polar-lake-14365.herokuapp.com/api/auth/signup', {
+                username: username,
+                email: email,
+                password: password,
+                role: ["user"],
+            });
+            // 2. Kijk goed wat je terugkrijgt!
+            console.log(response.data);
+
+            if (response.status === 200) {
+                // 3. Als het is gelukt, willen we in DIT component (SignUp) opslaan dat het gelukt is
+                setCreateUserSuccess(true);
+            }
+        } catch(e) {
+            console.error(e);
+            if (e.message.includes('400')) {
+                setError('Er bestaat al een account met deze gebruikersnaam');
+            } else {
+                setError('Er is iets misgegaan bij het verzenden. Probeer het opnieuw');
+            }
+        }
+        toggleLoading(false);
     }
 
-    const onError = (errorList) => {
-        console.log(errorList)
-    }
+    return (
+        <>
+            <h1>Registreren</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias cum debitis dolor dolore fuga id molestias qui quo unde?</p>
+            {/*4. Als het gelukt is, willen we een berichtje laten zien in de HTML, zoals:*/}
+            {createUserSuccess === true && (
+                <h2 className="message-success">Het is gelukt! 🥳 Klik <Link to="/signin">hier</Link> om je in te loggen</h2>
+            )}
+            <form onSubmit={onSubmit}>
+                <label htmlFor="email-field">
+                    Email:
+                    <input
+                        type="email"
+                        id="email-field"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </label>
 
-    return(
-        <form onSubmit={handleSubmit(onSuccess, onError)}>
-            <div>
-                <label htmlFor="fullName">Full name</label>
-                <input
-                    name="fullName"
-                    id="fullName"
-                    type="text"
-                    ref={register({required: true})}
-                />
-                {errors.fullName && <p>Full name is required</p>}
-            </div>
+                <label htmlFor="username-field">
+                    Gebruikersnaam:
+                    <input
+                        type="text"
+                        id="username-field"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                </label>
 
-            <div>
-                <label htmlFor="email">Email</label>
-                <input
-                    name="email"
-                    id="email"
-                    type="text"
-                    ref={register(
-                        {
-                        required: true,
-                        validate: (value) => value.includes('@'),
+                <label htmlFor="password-field">
+                    Wachtwoord:
+                    <input
+                        type="password"
+                        id="password-field"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}/>
+                </label>
 
-                        }
-                    )}
-                />
-                {errors.email && <p>Email is required</p>}
-            </div>
-
-            <div>
-                <label htmlFor="country">Country</label>
-                <input
-                    name="country"
-                    id="country"
-                    type="text"
-                    ref={register({required: true})}
-                />
-                {errors.country && <p>Country is required</p>}
-            </div>
-            <div>
-                <label htmlFor="password">Password</label>
-                <input
-                    name="password"
-                    id="password"
-                    type="password"
-                    ref={register(
-                        {
-                            required: true,
-                            minLength: 6,
-                            message: "At least 6 characters",
-                        })}
-                />
-                {errors.password && <p>Password is required</p>}
-            </div>
-            <div>
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <input
-                    name="confirmPassword"
-                    id="confirmPassword"
-                    type="password"
-                    ref={register(
-                        {
-                            required: true,
-                            minLength: 6,
-                            message: "Password does not match!",
-                        })}
-                />
-                {errors.confirmPassword && <p>password does not match!</p>}
-            </div>
-
-            <div>
                 <label htmlFor="terms-and-conditions">
                     <input
                         type="checkbox"
@@ -95,17 +96,24 @@ function Register(){
                     />
                     I agree with the terms and conditions!
                 </label>
-            </div>
 
-            <button
-                disabled={!checkedTerms}
-                type={"submit"}
-                // onClick={sendForm}
-            >Send
-            </button>
-        </form>
-
+                {/*Zorg dat de gebruiker niet nog een keer kan klikken terwijl we een request maken*/}
+                <button
+                    type="submit"
+                    className="form-button"
+                    disabled={!checkedTerms}
+                >
+                    {loading ? <Spinner className="loading-icon" /> : 'Maak account aan'}
+                </button>
+                {error && <p>{error}</p>}
+            </form>
+            <p>Heb je al een account? Je kunt je <Link to="/signin">hier</Link> inloggen.</p>
+        </>
     );
 }
 
-export default Register;
+export default SignUp;
+
+
+
+

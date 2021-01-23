@@ -12,3 +12,14 @@ p {
 #demo-button{
     background-color: red;
 }
+
+.register-form{
+    display: flex;
+    flex-direction: column;
+    background-color: #ededed;
+    padding: 32px;
+    width: 300px;
+    border-radius: 4px;
+    /*justify-content: center;*/
+    align-items: baseline;
+}
