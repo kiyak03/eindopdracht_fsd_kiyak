@@ -21,5 +21,11 @@ p {
     width: 300px;
     border-radius: 4px;
     /*justify-content: center;*/
-    align-items: baseline;
+    align-items: center;
+}
+
+.homepage-text{
+    display: flex;
+    padding: 70px;
+    align-content: center;
 }

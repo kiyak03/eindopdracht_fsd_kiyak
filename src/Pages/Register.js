@@ -54,7 +54,7 @@ function SignUp() {
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias cum debitis dolor dolore fuga id molestias qui quo unde?</p>
             {/*4. Als het gelukt is, willen we een berichtje laten zien in de HTML, zoals:*/}
             {createUserSuccess === true && (
-                <h2 className="message-success">Het is gelukt! 🥳 Klik <Link to="/signin">hier</Link> om je in te loggen</h2>
+                <h2 className="message-success">Het is gelukt! 🥳 Klik <Link to="/login">hier</Link> om je in te loggen</h2>
             )}
             <form onSubmit={onSubmit}>
                 <label htmlFor="email-field">
@@ -103,11 +103,11 @@ function SignUp() {
                     className="form-button"
                     disabled={!checkedTerms}
                 >
-                    {loading ? <Spinner className="loading-icon" /> : 'Maak account aan'}
+                    {loading ? <Spinner className="loading-icon" /> : 'Create account!'}
                 </button>
                 {error && <p>{error}</p>}
             </form>
-            <p>Heb je al een account? Je kunt je <Link to="/signin">hier</Link> inloggen.</p>
+            <p>Heb je al een account? Je kunt je <Link to="/login">hier</Link> inloggen.</p>
         </>
     );
 }

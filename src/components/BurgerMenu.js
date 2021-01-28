@@ -1,5 +1,5 @@
 import React from 'react'
-import './BurgerMenu.css'
+import './BurgerMenu.modules.css'
 
 function BurgerMenu(){
     return(

@@ -85,7 +85,7 @@ function SignIn() {
                 </button>
                 {error && <p>{error}</p>}
             </form>
-            <p>Heb je nog geen account? <Link to="/signup">Registreer</Link> je dan eerst.</p>
+            <p>Heb je nog geen account? <Link to="/register">Registreer</Link> je dan eerst.</p>
         </>
     );
 }

@@ -7,7 +7,7 @@ import '../App.css'
 
 function Home(){
     return(
-        <div>
+        <div className="homepage-text">
             {/*<NavBarTitle icon={Logo} title="Test title"/>*/}
             <h1>Welkom  dit is de Home pagina!</h1>
             <p>Launched in 2015, Don's record label "HEXAGON" won Best New Label on Beatport for having the most

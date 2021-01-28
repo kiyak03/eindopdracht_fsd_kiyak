@@ -1,13 +1,14 @@
 import React from 'react'
 import './App.css';
-import {BrowserRouter as Router, Switch, Route,} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import NavBar from './components/NavBar'
 import Home from './Pages/Home'
 import Upload from './Pages/Upload'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
-import Contact from './Pages/Contact'
+import Profile from "./Pages/Profile";
+import PrivateRoute from "./routing/PrivateRoute";
 
 function App() {
   return (
@@ -18,18 +19,18 @@ function App() {
             <Route exact path="/">
                 <Home/>
             </Route>
-            <Route path="/upload">
+            <PrivateRoute path="/upload">
                 <Upload/>
-            </Route>
+            </PrivateRoute>
             <Route path="/login">
                 <Login/>
             </Route>
             <Route path="/register">
                 <Register/>
             </Route>
-            <Route path="/contact">
-                <Contact/>
-            </Route>
+            <PrivateRoute exact path="/profile">
+                <Profile/>
+            </PrivateRoute>
 
         </Switch>
 
