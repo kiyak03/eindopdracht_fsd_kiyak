@@ -1,5 +1,5 @@
 import React from 'react'
-import FileUploader from "../components/FileUpload";
+import FileUploader from "../components/FileUploader";
 import {useAuthState} from "../context/AuthContext";
 
 function Upload(){

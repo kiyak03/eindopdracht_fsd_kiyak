@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import { useAuthState } from '../context/AuthContext';
 // import Logo from "../assets/logo_hexagon_white.png"
 import '../App.css'
-import FileUploader from "../components/FileUpload";
+import FileUploader from "../components/FileUploader";
 
 
 function Home(){
