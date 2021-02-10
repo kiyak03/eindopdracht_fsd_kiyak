@@ -1,12 +1,18 @@
 import React from 'react'
 // import NavBarTitle from "../components/NavBarTitle";
 import {Link} from "react-router-dom";
+import { useAuthState } from '../context/AuthContext';
 // import Logo from "../assets/logo_hexagon_white.png"
 import '../App.css'
+import FileUploader from "../components/FileUpload";
 
 
 function Home(){
+    const { isAuthenticated } = useAuthState();
+
+
     return(
+        <>
         <div className="homepage-text">
             {/*<NavBarTitle icon={Logo} title="Test title"/>*/}
             <h1>Welkom  dit is de Home pagina!</h1>
@@ -23,7 +29,8 @@ function Home(){
 
 
         </div>
-
+        <FileUploader/>
+        </>
 
     );
 }

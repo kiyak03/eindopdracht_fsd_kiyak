@@ -12,7 +12,7 @@ import PrivateRoute from "./routing/PrivateRoute";
 
 function App() {
   return (
-    <Router>
+    <>
         <NavBar/>
 
         <Switch>
@@ -34,7 +34,7 @@ function App() {
 
         </Switch>
 
-    </Router>
+    </>
   );
 }
 
