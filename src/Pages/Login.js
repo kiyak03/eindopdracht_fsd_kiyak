@@ -35,10 +35,11 @@ function SignIn() {
         event.preventDefault();
 
         try {
-            const response = await axios.post('https://polar-lake-14365.herokuapp.com/api/auth/signin', {
+            const response = await axios.post('http://localhost:8080/api/auth/signin', {
                 username: username,
                 password: password,
             })
+            console.log(response.data);
 
             // We roepen hier de context-functie "login" aan. De context gaat dan met de data die we hebben
             // teruggekregen alles op de juiste manier in localstorage en state zetten!

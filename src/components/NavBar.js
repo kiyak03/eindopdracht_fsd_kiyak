@@ -43,9 +43,9 @@ function NavBar() {
                             ) : (
                             <>
 
-                        <il>
-                            <NavLink to="/upload"  activeClassName="active-link">Upload</NavLink>
-                        </il>
+                        {/*<il>*/}
+                        {/*    <NavLink to="/upload"  activeClassName="active-link">Upload</NavLink>*/}
+                        {/*</il>*/}
 
                             <button
                             type="button"
