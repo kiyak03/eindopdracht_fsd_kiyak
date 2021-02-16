@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import axios from "axios";
 
 function FileUploader(){
-    const [demoname, setDemoname] = useState('');
-    const [demotype, setDemotype] = useState('');
-    const [demodata, setdemodata] = useState('');
+    const [name, setDemoname] = useState('');
+    const [type, setDemotype] = useState('');
+    const [data, setdemodata] = useState('');
 
 
     const [selectedFile, setSelectedFile] = useState();
@@ -18,24 +18,18 @@ function FileUploader(){
     };
 
 
-    //post het bestand naar de database//
-    // const handleSubmission = () => {
-    //     // hier de formule voor axios post//
-    // };
-
     async function onSubmit(event) {
         toggleLoading(true);
             setError('');
-            // Als je react-hook-form gebruikt hoeft dit niet, dat gebeurt dan automatisch
             event.preventDefault();
 
             try {
                 const token = localStorage.getItem('token');
 
-                const response = await axios.post('http://localhost:8080/upload', {
-                    demoname,
-                    demotype,
-                    demodata,
+                const response = await axios.post('http://localhost:8080/file-upload', {
+                    name,
+                    type,
+                    data,
                 },{headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${token}`,
@@ -51,11 +45,11 @@ function FileUploader(){
         toggleLoading(false);
 
     }
-
+    // method="POST" encType="multipart/form-data" action="/"
     // configuratie voor multipartfile in form hieronder
     return(
         <div>
-            <form method="POST" encType="multipart/form-data" action="/">
+            <form>
             <input type="file" name="file" onChange={changeHandler}/>
             {selectedFile ? (
                 <div>
