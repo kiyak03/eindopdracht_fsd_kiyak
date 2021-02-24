@@ -2,12 +2,6 @@ import React, {useState} from 'react';
 import axios from "axios";
 
 function FileUploader(){
-    const [name, setDemoname] = useState('');
-    const [type, setDemotype] = useState('');
-    const [data, setdemodata] = useState('');
-    const [file, setfile] = useState();
-
-
     const [selectedFile, setSelectedFile] = useState();
     const [filePicked, setFilePicked] = useState(false);
     const [error, setError] = useState('');
@@ -33,7 +27,6 @@ function FileUploader(){
                 ,{headers: {
                        'Content-Type': 'multipart/form-data',
                         Authorization: `Bearer ${token}`,
-                            // file: 'file',
                     },
 
                 });
