@@ -5,7 +5,7 @@ function FileUploader(){
     const [name, setDemoname] = useState('');
     const [type, setDemotype] = useState('');
     const [data, setdemodata] = useState('');
-    const [file, setfile] = useState('');
+    const [file, setfile] = useState();
 
 
     const [selectedFile, setSelectedFile] = useState();
@@ -13,30 +13,31 @@ function FileUploader(){
     const [error, setError] = useState('');
     const [loading, toggleLoading] = useState(false);
 
-    const changeHandler = (e) => {
-        setSelectedFile(e.target.files[0]);
-        setFilePicked(true);
-    };
+    // const changeHandler = (e) => {
+    //     setSelectedFile(e.target.files[0]);
+    //     setFilePicked(true);
+    // };
 
 
-    async function onSubmit(event) {
+    async function onSubmit(e) {
         toggleLoading(true);
             setError('');
-            event.preventDefault();
+            e.preventDefault();
+        setSelectedFile(e.target.files);
+        setFilePicked(true);
 
 
 
             try {
                 const token = localStorage.getItem('token');
-                let formData = new FormData();
-                formData.append("file", file)
+                const formData = new FormData();
+                formData.append('file', selectedFile)
 
-
-                const response = await axios.post('http://localhost:8080/files',
-                    formData
+                const response = await axios.post('http://localhost:8080/files',formData
                 ,{headers: {
                        'Content-Type': 'multipart/form-data',
                         Authorization: `Bearer ${token}`,
+                            // file: 'file',
                     },
 
                 });
@@ -55,7 +56,7 @@ function FileUploader(){
     return(
         <div>
             <form>
-            <input type="file" name="file-upload"  onChange={changeHandler}/>
+            <input type="file" name="file-upload"  onChange={onSubmit}/>
             {selectedFile ? (
                 <div>
                     <p>Filename: {selectedFile.name}</p>
