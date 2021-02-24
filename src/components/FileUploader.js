@@ -5,6 +5,7 @@ function FileUploader(){
     const [name, setDemoname] = useState('');
     const [type, setDemotype] = useState('');
     const [data, setdemodata] = useState('');
+    const [file, setfile] = useState('');
 
 
     const [selectedFile, setSelectedFile] = useState();
@@ -23,17 +24,21 @@ function FileUploader(){
             setError('');
             event.preventDefault();
 
+
+
             try {
                 const token = localStorage.getItem('token');
+                let formData = new FormData();
+                formData.append("file", file)
 
-                const response = await axios.post('http://localhost:8080/file-upload', {
-                    name,
-                    type,
-                    data,
-                },{headers: {
-                        'Content-Type': 'application/json',
+
+                const response = await axios.post('http://localhost:8080/files',
+                    formData
+                ,{headers: {
+                       'Content-Type': 'multipart/form-data',
                         Authorization: `Bearer ${token}`,
                     },
+
                 });
 
                 console.log(response.data);
@@ -50,7 +55,7 @@ function FileUploader(){
     return(
         <div>
             <form>
-            <input type="file" name="file" onChange={changeHandler}/>
+            <input type="file" name="file-upload"  onChange={changeHandler}/>
             {selectedFile ? (
                 <div>
                     <p>Filename: {selectedFile.name}</p>

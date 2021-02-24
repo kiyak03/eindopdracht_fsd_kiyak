@@ -9,7 +9,7 @@ import { AuthContext, useAuthState } from '../context/AuthContext';
 function NavBar() {
     const history = useHistory();
 
-    const [burgerMenuSlider, setBurgerMenuSlider] = useState(false);
+    // const [burgerMenuSlider, setBurgerMenuSlider] = useState(false);
     const openBurgerMenu =() =>{
     }
 
@@ -43,9 +43,9 @@ function NavBar() {
                             ) : (
                             <>
 
-                        {/*<il>*/}
-                        {/*    <NavLink to="/upload"  activeClassName="active-link">Upload</NavLink>*/}
-                        {/*</il>*/}
+                        <il>
+                            <NavLink to="/upload"  activeClassName="active-link">Upload</NavLink>
+                        </il>
 
                             <button
                             type="button"
