@@ -13,20 +13,16 @@ function FileUploader(){
     const [error, setError] = useState('');
     const [loading, toggleLoading] = useState(false);
 
-    // const changeHandler = (e) => {
-    //     setSelectedFile(e.target.files[0]);
-    //     setFilePicked(true);
-    // };
+    const changeHandler = (e) => {
+        setSelectedFile(e.target.files[0]);
+        setFilePicked(true);
+    };
 
 
-    async function onSubmit(e) {
+    async function onSubmit(event) {
         toggleLoading(true);
             setError('');
-            e.preventDefault();
-        setSelectedFile(e.target.files);
-        setFilePicked(true);
-
-
+            event.preventDefault();
 
             try {
                 const token = localStorage.getItem('token');
@@ -56,7 +52,7 @@ function FileUploader(){
     return(
         <div>
             <form>
-            <input type="file" name="file-upload"  onChange={onSubmit}/>
+            <input type="file" name="file-upload"  onChange={changeHandler}/>
             {selectedFile ? (
                 <div>
                     <p>Filename: {selectedFile.name}</p>
