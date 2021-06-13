@@ -21,7 +21,7 @@ function FileUploader(){
             try {
                 const token = localStorage.getItem('token');
                 const formData = new FormData();
-                formData.append('file', selectedFile)
+                formData.append('file', selectedFile, token)
 
                 const response = await axios.post('http://localhost:8080/files',formData
                 ,{headers: {
@@ -40,8 +40,6 @@ function FileUploader(){
         toggleLoading(false);
 
     }
-    // method="POST" encType="multipart/form-data" action="/"
-    // configuratie voor multipartfile in form hieronder
     return(
         <div>
             <form>
