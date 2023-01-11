@@ -3,15 +3,15 @@ import {useHistory} from 'react-router-dom'
 import './NavBar.modules.css'
 import {NavLink} from "react-router-dom";
 import Logo from "../assets/HEXAGON_TEXT_250x.png";
-import BurgerMenu from "./BurgerMenu";
+// import BurgerMenu from "./BurgerMenu";
 import { AuthContext, useAuthState } from '../context/AuthContext';
 
 function NavBar() {
     const history = useHistory();
 
     // const [burgerMenuSlider, setBurgerMenuSlider] = useState(false);
-    const openBurgerMenu =() =>{
-    }
+    // const openBurgerMenu =() =>{
+    // }
 
     const {isAuthenticated} = useState();
     const { logout } = useContext(AuthContext);
@@ -60,19 +60,11 @@ function NavBar() {
                             Register
                             </button>
                             </>
-
-                        // <il>
-                        //     <NavLink to="/login"  activeClassName="active-link">Login</NavLink>
-                        // </il>
-                        //
-                        // <il>
-                        //     <NavLink to="/register"  activeClassName="active-link">Register</NavLink>
-                        // </il>
                             )}
 
                     </ul>
 
-                <BurgerMenu className="burger-menu" onClick={openBurgerMenu}/>
+                {/*<BurgerMenu className="burger-menu" onClick={openBurgerMenu}/>*/}
 
 
 

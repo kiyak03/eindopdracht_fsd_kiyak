@@ -3,6 +3,9 @@ import axios from "axios";
 
 function FileUploader(){
     const [selectedFile, setSelectedFile] = useState();
+    const [message, setMessage] = useState();
+    const [name, setName] = useState();
+    const [email, setEmail] = useState();
     const [filePicked, setFilePicked] = useState(false);
     const [error, setError] = useState('');
     const [loading, toggleLoading] = useState(false);
@@ -20,8 +23,12 @@ function FileUploader(){
 
             try {
                 const token = localStorage.getItem('token');
+
                 const formData = new FormData();
                 formData.append('file', selectedFile, token)
+                formData.append('message',message, token)
+                formData.append('name',name, token)
+                formData.append('email',email, token)
 
                 const response = await axios.post('http://localhost:8080/files',formData
                 ,{headers: {

@@ -28,10 +28,10 @@ function SignIn() {
         }
     }, [isAuthenticated]);
 
+
     async function onSubmit(event) {
         toggleLoading(true);
         setError('');
-        // Als je react-hook-form gebruikt hoeft dit niet, dat gebeurt dan automatisch
         event.preventDefault();
 
         try {
@@ -146,3 +146,4 @@ export default SignIn;
 // }
 //
 // export default Login;
+
