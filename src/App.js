@@ -9,6 +9,7 @@ import Login from './Pages/Login'
 import Register from './Pages/Register'
 import Profile from "./Pages/Profile";
 import PrivateRoute from "./routing/PrivateRoute";
+import Demo from "./Pages/Demo";
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
             </Route>
             <PrivateRoute exact path="/profile">
                 <Profile/>
+            </PrivateRoute>
+            <PrivateRoute path="/files/:id">
+                <Demo/>
             </PrivateRoute>
 
         </Switch>

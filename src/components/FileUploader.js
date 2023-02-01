@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect,useState} from 'react';
 import axios from "axios";
 
 function FileUploader(){
@@ -9,27 +9,55 @@ function FileUploader(){
     const [filePicked, setFilePicked] = useState(false);
     const [error, setError] = useState('');
     const [loading, toggleLoading] = useState(false);
+    const [protectedData, setProtectedData] = useState([]);
 
     const changeHandler = (e) => {
         setSelectedFile(e.target.files[0]);
         setFilePicked(true);
     };
 
+    useEffect(() => {
+        async function getProtectedData() {
+            setError('');
+            try {
+                // haal de token op uit de local storage
+                const token = localStorage.getItem('token');
+
+                // haal de protected data op met de token meegestuurd ('http://localhost:8080/api/user')
+                const response = await axios.get('http://localhost:8080/api/user', {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    }
+                });
+                console.log({response});
+                // zet deze data in de state zodat we dit in het component kunnen laten zien
+                setProtectedData(response.data);
+                console.log(protectedData);
+            } catch(e) {
+                setError('Er is iets misgegaan bij het ophalen van de data')
+            }
+        }
+
+        getProtectedData();
+    }, []);
 
     async function onSubmit(event) {
         toggleLoading(true);
-            setError('');
-            event.preventDefault();
+        setError('');
+        event.preventDefault();
+
 
             try {
                 const token = localStorage.getItem('token');
 
                 const formData = new FormData();
-                formData.append('file', selectedFile, token)
-                formData.append('message',message, token)
-                formData.append('name',name, token)
-                formData.append('email',email, token)
+                formData.append('file', selectedFile,selectedFile.name)
+                formData.append('message',message)
+                formData.append('name',name,)
+                formData.append('email',email)
 
+                // const response = await axios.post('http://localhost:8080/files/',formData
                 const response = await axios.post('http://localhost:8080/files',formData
                 ,{headers: {
                        'Content-Type': 'multipart/form-data',
@@ -63,7 +91,18 @@ function FileUploader(){
                 </div>
             ) : (
                 <p>Select a file to show details</p>
+
             )}
+                <div className="form-item">
+                    <label className="form-title">comment</label>
+                    <textarea className="form-input-comment"
+                              name="comment"
+                              rows="6"
+                              value={message}
+                              required
+                              onChange={(e) => setMessage(e.target.value)}
+                    />
+                </div>
             <div>
                 <button type="button" onClick={onSubmit}>Submit</button>
                 {error && <p>{error}</p>}
