@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext, useAuthState } from '../context/AuthContext';
 import { ReactComponent as Spinner } from '../assets/refresh.svg';
+import './Login.modules.css'
 
 function SignIn() {
     // context-functies
@@ -55,38 +56,44 @@ function SignIn() {
 
     return (
         <>
-            <h1>Inloggen</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias cum debitis dolor dolore fuga id molestias qui quo unde?</p>
+            <div className='login-container'>
+                <div className='login-screen'>
+                    <div className='login-title'>
+                    <h1>Inloggen</h1>
+                    </div>
 
-            <form onSubmit={onSubmit}>
-                <label htmlFor="username-field">
-                    Gebruikersnaam:
-                    <input
-                        type="text"
-                        id="username-field"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                </label>
+                    <form onSubmit={onSubmit}>
+                    <label htmlFor="username-field">
+                        Username:
+                        <input
+                            type="text"
+                            id="username-field"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </label>
 
-                <label htmlFor="password-field">
-                    Wachtwoord:
-                    <input
-                        type="password"
-                        id="password-field"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)} />
-                </label>
-                <button
-                    type="submit"
-                    className="form-button"
-                    disabled={loading}
-                >
-                    {loading ? <Spinner className="loading-icon" /> : 'Login!'}
-                </button>
-                {error && <p>{error}</p>}
-            </form>
-            <p>Heb je nog geen account? <Link to="/register">Registreer</Link> je dan eerst.</p>
+                        <label htmlFor="password-field">
+                            Wachtwoord:
+                            <input
+                                type="password"
+                                id="password-field"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)} />
+                        </label>
+                        <button
+                            type="submit"
+                            className="form-button"
+                            disabled={loading}
+                        >
+                            {loading ? <Spinner className="loading-icon" /> : 'Login!'}
+                        </button>
+                        {error && <span>{error}</span>}
+                        <span>Heb je nog geen account? <Link to="/register">Registreer</Link> je dan eerst.</span>
+                    </form>
+
+                </div>
+            </div>
         </>
     );
 }
