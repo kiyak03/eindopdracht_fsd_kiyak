@@ -1,0 +1,28 @@
+.mp3-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #444444;
+}
+
+.demo-container {
+    display: flex;
+    gap: 25px;
+    border: 1px solid #444444;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    max-width:750px;
+    width: 750px;
+    cursor: pointer;
+}
+
+.demo-container:hover {
+    opacity: 0.7;
+}
+
+.details-container {
+    flex-direction: column;
+    display: flex;
+    gap: 10px;
+}

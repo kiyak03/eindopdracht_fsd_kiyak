@@ -18,7 +18,7 @@ function AuthContextProvider({ children }) {
         async function getUserInfo() {
             try {
                 // We kunnen de gebruikersdata ophalen omdat we onszelf authenticeren met de token
-                const response = await axios.get('http://localhost:8080/api/user', {
+                const response = await axios.get('http://localhost:8080/api/users', {
                         headers: {
                             "Content-Type": "application/json",
                             Authorization: `Bearer ${token}`,
@@ -86,6 +86,8 @@ function AuthContextProvider({ children }) {
                 username: data.username,
                 email: data.email,
                 roles: data.roles,
+                id: data.id,
+                isAdmin: data.roles.includes("ROLE_ADMIN"),
             }
         })
 
@@ -125,12 +127,14 @@ function useAuthState() {
     // en als er een gebruiker in de authState staat
     const isDone = authState.status === 'done';
     const isAuthenticated = authState.user !== null && isDone;
+    const isAdmin = authState.user !== null && authState.user.isAdmin;
 
     // console.log('Ik ben authenticated:', isAuthenticated);
 
     return {
         ...authState,
         isAuthenticated: isAuthenticated,
+        isAdmin: isAdmin,
     }
 }
 

@@ -13,7 +13,7 @@ function NavBar() {
     // const openBurgerMenu =() =>{
     // }
 
-    const {isAuthenticated} = useState();
+    const {isAuthenticated} = useAuthState();
     const { logout } = useContext(AuthContext);
 
     useEffect(() => {
@@ -31,27 +31,33 @@ function NavBar() {
                         </NavLink>
                     </div>
 
-                    <ul className="navbar-links">
+                    <div className="navbar-links">
+
+                            <button onClick={() => history.push("/upload")}>Upload</button>
 
                         {isAuthenticated ? (
+                            <>
+                            <button
+                                    type="button"
+                                    onClick={()=>history.push("/profile")}
+                                >
+                                Profile
+                                </button>
                             <button
                                 type="button"
                                 onClick={() => logout()}
                                 >
                                 Log out
                             </button>
-                            ) : (
-                            <>
 
-                        <il>
-                            <NavLink to="/upload"  activeClassName="active-link">Upload</NavLink>
-                        </il>
-
+                            </>
+                        ) : (
+                                <>
                             <button
-                            type="button"
-                            onClick={() => history.push('/login')}
+                                type="button"
+                                onClick={() => history.push('/login')}
                             >
-                            Login
+                                Login
                             </button>
                             <button
                             type="button"
@@ -59,10 +65,9 @@ function NavBar() {
                             >
                             Register
                             </button>
-                            </>
+                                </>
                             )}
-
-                    </ul>
+                    </div>
 
                 {/*<BurgerMenu className="burger-menu" onClick={openBurgerMenu}/>*/}
 

@@ -3,11 +3,6 @@
 /*    padding: 0;*/
 /*}*/
 
-p {
-    display: flex;
-    justify-content: center;
-    width: 1000px;
-}
 
 #demo-button{
     background-color: red;
@@ -22,10 +17,4 @@ p {
     border-radius: 4px;
     /*justify-content: center;*/
     align-items: center;
-}
-
-.homepage-text{
-    display: flex;
-    padding: 70px;
-    align-content: center;
 }
