@@ -14,15 +14,26 @@ function Profile() {
     const [protectedData, setProtectedData] = useState([]);
     const {id} = useParams();
 
+
     useEffect(() => {
         async function getProtectedData() {
             setError('');
             try {
+
+                const userRole = user && user.roles;
+                console.log(userRole)
+                let url;
+                if (userRole == 'ROLE_ADMIN' ) {
+                    url = 'http://localhost:8080/files/uploads/all';
+                } else {
+                    url = 'http://localhost:8080/files/uploads/';
+                }
+
                 // haal de token op uit de local storage
                 const token = localStorage.getItem('token');
 
-                // haal de protected data op met de token meegestuurd ('http://localhost:8080/api/user')
-                const response = await axios.get(`http://localhost:8080/files/all`, {
+                // haal de protected data op met de token meegestuurd
+                const response = await axios.get(url, {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`,
@@ -38,7 +49,7 @@ console.log({response});
         }
 
         getProtectedData();
-    }, []);
+    }, [user]);
 
     return (
         <div className="profile-page">
@@ -69,7 +80,7 @@ console.log({response});
                                     name={demoFile.name}
                                     children="open"
                                     downloadUrl={demoFile.downloadUrl}
-                                    link={`/files/${demoFile.id}`}/>
+                                    link={`/files/uploads/${demoFile.id}`}/>
                             })}
                         </div>
                     </> :

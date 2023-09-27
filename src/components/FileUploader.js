@@ -58,7 +58,7 @@ function FileUploader(){
                 formData.append('email',email)
 
                 // const response = await axios.post('http://localhost:8080/files/',formData
-                const response = await axios.post('http://localhost:8080/files',formData
+                const response = await axios.post('http://localhost:8080/files/uploads',formData
                 ,{headers: {
                        'Content-Type': 'multipart/form-data',
                         Authorization: `Bearer ${token}`,

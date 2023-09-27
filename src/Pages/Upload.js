@@ -1,17 +1,26 @@
 import React from 'react'
 import FileUploader from "../components/FileUploader";
 import {useAuthState} from "../context/AuthContext";
+import './Upload.modules.css'
 
 function Upload(){
     const { user } = useAuthState();
 
     return(
         <>
-        <h1>dit is de upload pagina</h1>
+            <div className='upload-container'>
+                <div className='upload-screen'>
+                    <div className='upload-title'>
+                <h1>Upload DEMO</h1>
+                    </div>
+                </div>
 
-            <h1>Welkom</h1>
+                        <FileUploader/>
+            </div>
 
-        <FileUploader/>
+
+
+
         </>
 
     );
