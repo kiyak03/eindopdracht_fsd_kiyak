@@ -11,9 +11,17 @@ function FileUploader(){
     const [loading, toggleLoading] = useState(false);
     const [protectedData, setProtectedData] = useState([]);
 
-    const changeHandler = (e) => {
-        setSelectedFile(e.target.files[0]);
-        setFilePicked(true);
+    const changeHandler = (event) => {
+        const file = event.target.files[0];
+        const allowedExtensions = /(\.mp3)$/i;
+
+        if (allowedExtensions.test(file.name)) {
+            setSelectedFile(file);
+            setFilePicked(true);
+        } else {
+            setSelectedFile(null);
+            alert('Alleen mp3 bestanden zijn toegestaan.');
+        }
     };
 
     useEffect(() => {
@@ -51,6 +59,12 @@ function FileUploader(){
             try {
                 const token = localStorage.getItem('token');
 
+                // if (!selectedFile) {
+                //     setError('Please select a file.');
+                //     toggleLoading(false);
+                //     return;
+                // }
+
                 const formData = new FormData();
                 formData.append('file', selectedFile,selectedFile.name)
                 formData.append('message',message)
@@ -65,6 +79,12 @@ function FileUploader(){
                     },
 
                 });
+                if (response.status === 201) {
+                    response.statusText("Uploaden is voltooid!")
+
+                } else {
+
+                }
 
                 console.log(response.data);
             } catch(e) {
@@ -78,7 +98,7 @@ function FileUploader(){
     return(
         <div>
             <form>
-            <input type="file" name="file-upload"  onChange={changeHandler}/>
+            <input type="file" name="file-upload"  accept="audio/mp3"onChange={changeHandler}/>
             {selectedFile ? (
                 <div>
                     <p>Filename: {selectedFile.name}</p>

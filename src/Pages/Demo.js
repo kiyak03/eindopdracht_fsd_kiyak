@@ -21,7 +21,7 @@ function Demo() {
         setError('');
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`http://localhost:8080/files/files/${id}`, {
+            const response = await axios.get(`http://localhost:8080/files/uploads/${id}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
@@ -61,7 +61,7 @@ function Demo() {
             const formData = new FormData()
             formData.append("feedback", feedback);
 
-            await axios.get(`http://localhost:8080/files/files/${id}`, formData, {
+            await axios.get(`http://localhost:8080/files/uploads/${id}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                     Authorization: `Bearer ${token}`,

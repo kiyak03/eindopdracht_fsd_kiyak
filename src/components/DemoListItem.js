@@ -1,15 +1,18 @@
 import React, {useEffect,useState} from 'react';
 import "./DemoListItem.modules.css"
 import axios from "axios";
+import {useParams} from "react-router";
+import FeedbackButton from "./FeedbackButton";
 
 
-
-function DemoListItem({title, name, link, comment, downloadUrl}) {
+function DemoListItem({title, name, link, comment, downloadUrl, demoId}) {
 	console.log(downloadUrl)
 	// const [file, setFile] = useState(null);
 	const [fileLink, setFileLink] = useState("");
-	const [audioLink,setAudioLink] = useState("")
-
+	const [audioLink,setAudioLink] = useState("");
+	const [feedback, setFeedback] = useState("");
+	const [error, setError] = useState('');
+	const {id} = useParams();
 
 
 	useEffect(() => {
@@ -45,6 +48,8 @@ function DemoListItem({title, name, link, comment, downloadUrl}) {
 	const downloadFile = ()=> {
 		fileLink.click();
 	}
+
+
 	return (
 			<div onClick={()=> console.log(link)} role="button" className="demo-container">
 				<img src="https://cdn-icons-png.flaticon.com/512/2305/2305975.png" className="mp3-icon"/>
@@ -74,7 +79,9 @@ function DemoListItem({title, name, link, comment, downloadUrl}) {
 				<button onClick={()=> downloadFile()}>
 					download
 				</button>
-		</div>
+
+				<FeedbackButton demoId={demoId} feedback={feedback} setFeedback={setFeedback} />
+			</div>
 	)
 }
 

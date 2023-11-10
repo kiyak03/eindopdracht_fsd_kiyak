@@ -76,7 +76,7 @@ console.log({response});
                                 return <DemoListItem
                                     title={demoFile.demo}
                                     comment={demoFile.comment}
-                                    key={demoFile.id}
+                                    demoId={demoFile.id}
                                     name={demoFile.name}
                                     children="open"
                                     downloadUrl={demoFile.downloadUrl}
