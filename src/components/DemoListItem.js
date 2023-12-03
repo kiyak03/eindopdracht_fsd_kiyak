@@ -6,7 +6,7 @@ import FeedbackButton from "./FeedbackButton";
 
 
 function DemoListItem({title, name, link, comment, downloadUrl, demoId}) {
-	console.log(downloadUrl)
+	console.log("demo id " +   demoId)
 	// const [file, setFile] = useState(null);
 	const [fileLink, setFileLink] = useState("");
 	const [audioLink,setAudioLink] = useState("");

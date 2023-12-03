@@ -11,8 +11,9 @@ import {useParams} from "react-router";
 function Profile() {
     const {user, setUser } = useAuthState();
     const [error, setError] = useState('');
-    const [protectedData, setProtectedData] = useState([]);
+    const [protectedData, setProtectedData] = useState();
     const {id} = useParams();
+
 
 
     useEffect(() => {
@@ -39,10 +40,17 @@ function Profile() {
                         Authorization: `Bearer ${token}`,
                     }
                 });
-console.log({response});
+                console.log('Response from backend:', response.data);
                 // zet deze data in de state zodat we dit in het component kunnen laten zien
-                setProtectedData(response.data);
+                // setProtectedData(response.data);
                 // console.log(protectedData);
+                // const responseData = Array.isArray(response.data)
+                //     ? response.data
+                //     : [response.data];
+
+                setProtectedData(response.data);
+                console.log('Type of protectedData:', typeof protectedData);
+                console.log('Protected Data:', protectedData);
             } catch(e) {
                 setError('Er is iets misgegaan bij het ophalen van de data')
             }
@@ -50,6 +58,12 @@ console.log({response});
 
         getProtectedData();
     }, [user]);
+
+    useEffect(() => {
+        if (Array.isArray(protectedData)) {
+            // Handle any additional logic here if needed
+        }
+    }, [protectedData]);
 
     return (
         <div className="profile-page">
@@ -74,6 +88,7 @@ console.log({response});
                         <div className="files-container">
                             {protectedData.map((demoFile)=>{
                                 return <DemoListItem
+                                    key={demoFile.id}
                                     title={demoFile.demo}
                                     comment={demoFile.comment}
                                     demoId={demoFile.id}

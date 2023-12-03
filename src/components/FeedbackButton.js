@@ -1,43 +1,68 @@
-import React, {useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-import axios from "axios";
-import {useParams} from "react-router";
 
 
-const FeedbackButton = () => {
+
+const FeedbackButton = ({demoId, setDemoId }) => {
 	const [feedback, setFeedback] = useState('');
-	const [uploadId, setUploadId] = useState('');
-	const {id} = useParams();
-	const [demoId, setDemoId] = useState('');
+	// const [demoId, setDemoId] = useState('');
 	const [error, setError] = useState('');
-	const feedbackOptions = [
-		'Very Good',
-		'Good',
-		'Average',
-		'Poor',
-		'Very Poor',
-	];
+	const { id } = useParams();
+	const feedbackOptions = ['Very Good', 'Good', 'Average', 'Poor', 'Very Poor'];
 
+	// useEffect(() => {
+	// 	async function fetchDemoId() {
+	// 		setError('');
+	//
+	// 		try {
+	// 			const token = localStorage.getItem('token');
+	// 			const response = await axios.get(`http://localhost:8080/files/uploads?id`, {
+	// 				headers: {
+	// 					Authorization: `Bearer ${token}`,
+	// 				},
+	// 			});
+	// 			console.log(demoId);
+	// 			// Assuming the response.data contains the demoId
+	// 			if (response.data.demoId !== undefined){
+	// 				setDemoId(response.data.demoId);
+	// 			}else {
+	// 				setError('Demo ID is niet beschikbaar in de respons')
+	// 			}
+	// 		} catch (error) {
+	// 			setError('Error fetching demoId:');
+	// 		}
+	// 	}
+	//
+	// 	fetchDemoId();
+	// }, [id]);
 
 	async function handleSubmit(e) {
 		e.preventDefault();
-		try {
-			const token = localStorage.getItem('token');
+		// if (demoId) {
+			try {
+				const token = localStorage.getItem('token');
 
-			const formData = new FormData()
-			formData.append("feedback", feedback);
-			// `http://localhost:8080/comments/${id}`
-			await axios.post(`http://localhost:8080/comments/`, formData, {
-				headers: {
-					"Content-Type": "multipart/form-data",
-					Authorization: `Bearer ${token}`,
-				}});
-		} catch (e) {
-			setError("Something went wrong while uploading feedback, please try again.")
-		}
+				const formData = new FormData();
+				formData.append('feedback', feedback);
+				formData.append('demoId', demoId);
+
+				await axios.post('http://localhost:8080/feedback/', formData, {
+					headers: {
+						'Content-Type': 'multipart/form-data',
+						Authorization: `Bearer ${token}`,
+					},
+				});
+			} catch (e) {
+				setError('Something went wrong while uploading feedback, please try again.');
+			}
+		// }else {setError('Demo ID niet beschikbaar')}
 	}
-	console.log("demoId value:", demoId);
+
+	console.log('Feedback: ', feedback);
+	console.log('DemoId: ', demoId);
+
 	return (
 		<Popup trigger={<button>Feedback</button>} modal>
 			{(close) => (
@@ -45,9 +70,7 @@ const FeedbackButton = () => {
 					<a className="close" onClick={close}>
 						&times;
 					</a>
-					<div className="header">
-						Give your feedback on the mp3 file
-					</div>
+					<div className="header">Give your feedback on the mp3 file</div>
 					<div className="content">
 						<form onSubmit={handleSubmit}>
 							<div>
@@ -72,6 +95,6 @@ const FeedbackButton = () => {
 			)}
 		</Popup>
 	);
-}
+};
 
 export default FeedbackButton;
