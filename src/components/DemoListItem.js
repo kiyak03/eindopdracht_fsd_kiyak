@@ -3,7 +3,42 @@ import "./DemoListItem.modules.css"
 import axios from "axios";
 import {useParams} from "react-router";
 import FeedbackButton from "./FeedbackButton";
+import FeedbackList from "./FeedbackList";
 
+// const FeedbackListId = ({ demoId }) => {
+// 	const [feedback, setFeedback] = useState([]);
+// 	const [errorFeedback, setErrorFeedback] = useState('');
+//
+// 	useEffect(() => {
+// 		const fetchFeedback = async () => {
+// 			try {
+// 				const response = await axios.get(`http://localhost:8080/feedback/${demoId}`);
+// 				setFeedback(response.data);
+// 			} catch (error) {
+// 				setErrorFeedback('Error fetching feedback');
+// 			}
+// 		};
+//
+// 		fetchFeedback();
+// 	}, [demoId]);
+//
+// 	if (errorFeedback) {
+// 		return <p>{errorFeedback}</p>;
+// 	}
+//
+// 	return (
+// 		<div>
+// 			<h3>Feedback for Demo {demoId}</h3>
+// 			<ul>
+// 				{feedback.map((entry) => (
+// 					<li key={entry.id}>{entry.comment}</li>
+// 				))}
+// 			</ul>
+// 		</div>
+// 	);
+// };
+//
+//
 
 function DemoListItem({title, name, link, comment, downloadUrl, demoId}) {
 	console.log("demo id " +   demoId)
@@ -13,6 +48,8 @@ function DemoListItem({title, name, link, comment, downloadUrl, demoId}) {
 	const [feedback, setFeedback] = useState("");
 	const [error, setError] = useState('');
 	const {id} = useParams();
+	const [adminFeedback, setAdminFeedback] = useState("");
+
 
 
 	useEffect(() => {
@@ -49,7 +86,6 @@ function DemoListItem({title, name, link, comment, downloadUrl, demoId}) {
 		fileLink.click();
 	}
 
-
 	return (
 			<div onClick={()=> console.log(link)} role="button" className="demo-container">
 				<img src="https://cdn-icons-png.flaticon.com/512/2305/2305975.png" className="mp3-icon"/>
@@ -71,6 +107,11 @@ function DemoListItem({title, name, link, comment, downloadUrl, demoId}) {
 						</p>
 					</div>
 				</div>
+				{/*<div>*/}
+				{/*	<div>*/}
+				{/*		<FeedbackListId demoId={demoId} />*/}
+				{/*	</div>*/}
+				{/*</div>*/}
 
 				{/*{console.log(audioLink)}*/}
 				<audio controls src={audioLink} type="audio/mpeg">
@@ -81,6 +122,8 @@ function DemoListItem({title, name, link, comment, downloadUrl, demoId}) {
 				</button>
 
 				<FeedbackButton demoId={demoId} feedback={feedback} setFeedback={setFeedback} />
+				<FeedbackList demoId={demoId} /> {/* Display the FeedbackList for the specific demoId */}
+
 			</div>
 	)
 }

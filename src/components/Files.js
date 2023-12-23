@@ -1,26 +1,6 @@
 import React from "react";
-import axios from "axios";
-import {useParams} from "react-router-dom"
-
-
 
 function Files({title, message, link, name, children}) {
-//     const {id} = useParams();
-// async function downloadFile(){
-//
-//     const token = localStorage.getItem('token');
-//     const response = await axios.get(`http://localhost:8080/files/${id}`, {
-//         headers: {
-//             "Content-Type": "application/json",
-//             Authorization: `Bearer ${token}`,
-//         }
-//     });
-//     console.log({response});
-//
-//     downloadFile(response.data);
-//     }
-
-
 
     return (
         <>

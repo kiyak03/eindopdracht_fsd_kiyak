@@ -41,12 +41,6 @@ function Profile() {
                     }
                 });
                 console.log('Response from backend:', response.data);
-                // zet deze data in de state zodat we dit in het component kunnen laten zien
-                // setProtectedData(response.data);
-                // console.log(protectedData);
-                // const responseData = Array.isArray(response.data)
-                //     ? response.data
-                //     : [response.data];
 
                 setProtectedData(response.data);
                 console.log('Type of protectedData:', typeof protectedData);
@@ -77,34 +71,32 @@ function Profile() {
             </>
             }
 
-                {/*{protectedData && <p>{protectedData}</p>}*/}
                 {error && <p className="message-error">{error}</p>}
 
 
             <div className="profile-container">
                 <h2>Uploads:</h2>
-                {protectedData && protectedData.length > 0 ?
-                    <>
-                        <div className="files-container">
-                            {protectedData.map((demoFile)=>{
-                                return <DemoListItem
-                                    key={demoFile.id}
-                                    title={demoFile.demo}
-                                    comment={demoFile.comment}
-                                    demoId={demoFile.id}
-                                    name={demoFile.name}
-                                    children="open"
-                                    downloadUrl={demoFile.downloadUrl}
-                                    link={`/files/uploads/${demoFile.id}`}/>
-                            })}
-                        </div>
-                    </> :
-                        <p className="Geen-bestanden!">Geen bestanden gevonden!</p>}
-                </div>
+                {protectedData && protectedData.length > 0 ? (
+                    <div className="files-container">
+                        {protectedData.map((demoFile) => (
+                            <DemoListItem
+                                key={demoFile.id}
+                                title={demoFile.demo}
+                                comment={demoFile.comment}
+                                demoId={demoFile.id}
+                                name={demoFile.name}
+                                children="open"
+                                downloadUrl={demoFile.downloadUrl}
+                                link={`/files/uploads/${demoFile.id}`}
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    <p className="Geen-bestanden!">Geen bestanden gevonden!</p>
+                )}
+            </div>
 
-                <p>Terug naar de <Link to="/">Homepagina</Link></p>
-
-
+            <p>Terug naar de <Link to="/">Homepagina</Link></p>
         </div>
     );
 }

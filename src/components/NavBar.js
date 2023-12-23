@@ -9,10 +9,6 @@ import { AuthContext, useAuthState } from '../context/AuthContext';
 function NavBar() {
     const history = useHistory();
 
-    // const [burgerMenuSlider, setBurgerMenuSlider] = useState(false);
-    // const openBurgerMenu =() =>{
-    // }
-
     const {isAuthenticated} = useAuthState();
     const { logout } = useContext(AuthContext);
 

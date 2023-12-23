@@ -7,13 +7,13 @@
 
 .demo-container {
     display: flex;
-    gap: 25px;
+    gap: 15px;
     border: 1px solid #444444;
-    padding: 10px;
+    padding: 20px;
     margin: 10px;
     border-radius: 8px;
-    max-width:750px;
-    width: 750px;
+    max-width:1000px;
+    width: 1000px;
     cursor: pointer;
 }
 
@@ -24,5 +24,5 @@
 .details-container {
     flex-direction: column;
     display: flex;
-    gap: 10px;
+    gap: 5px;
 }

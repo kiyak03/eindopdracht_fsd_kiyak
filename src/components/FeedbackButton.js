@@ -12,31 +12,6 @@ const FeedbackButton = ({demoId, setDemoId }) => {
 	const { id } = useParams();
 	const feedbackOptions = ['Very Good', 'Good', 'Average', 'Poor', 'Very Poor'];
 
-	// useEffect(() => {
-	// 	async function fetchDemoId() {
-	// 		setError('');
-	//
-	// 		try {
-	// 			const token = localStorage.getItem('token');
-	// 			const response = await axios.get(`http://localhost:8080/files/uploads?id`, {
-	// 				headers: {
-	// 					Authorization: `Bearer ${token}`,
-	// 				},
-	// 			});
-	// 			console.log(demoId);
-	// 			// Assuming the response.data contains the demoId
-	// 			if (response.data.demoId !== undefined){
-	// 				setDemoId(response.data.demoId);
-	// 			}else {
-	// 				setError('Demo ID is niet beschikbaar in de respons')
-	// 			}
-	// 		} catch (error) {
-	// 			setError('Error fetching demoId:');
-	// 		}
-	// 	}
-	//
-	// 	fetchDemoId();
-	// }, [id]);
 
 	async function handleSubmit(e) {
 		e.preventDefault();
