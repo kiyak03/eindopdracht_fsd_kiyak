@@ -92,17 +92,17 @@ function DemoListItem({title, name, link, comment, downloadUrl, demoId}) {
 				<div className="details-container">
 
 					<div>
-					<b>Titel:
+					<b>Title:
 						{title}
 					</b>
 				</div>
 				<div>
-					<p>Door:
+					<p>By:
 						{name}
 					</p>
 				</div>
 					<div>
-						<p>Bericht:
+						<p>Message:
 							 {comment}
 						</p>
 					</div>

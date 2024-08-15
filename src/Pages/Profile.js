@@ -62,11 +62,11 @@ function Profile() {
     return (
         <div className="profile-page">
 
-            <h1>Profielpagina</h1>
-            <h2>Gegevens</h2>
+            <h1>Profile</h1>
+            <h2>Details</h2>
             {user &&
             <>
-                <p><strong>Gebruikersnaam: </strong>{user.username}</p>
+                <p><strong>Username: </strong>{user.username}</p>
                 <p><strong>Email: </strong>{user.email}</p>
             </>
             }
@@ -96,7 +96,7 @@ function Profile() {
                 )}
             </div>
 
-            <p>Terug naar de <Link to="/">Homepagina</Link></p>
+            <p>Back to <Link to="/">Homepage</Link></p>
         </div>
     );
 }

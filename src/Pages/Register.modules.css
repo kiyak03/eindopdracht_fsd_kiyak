@@ -1,3 +1,21 @@
+.register-container {
+    margin: 50px auto;
+    width: 300px;
+}
+.register-screen {
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 50px
+}
+
+.register-title {
+    text-align: center;
+    color: #777;
+}
+
+
+
+
 header {
     background-color: dodgerblue;
     color: white;

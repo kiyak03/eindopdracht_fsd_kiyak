@@ -7,7 +7,7 @@ import Popup from 'reactjs-popup';
 
 const FeedbackButton = ({demoId, setDemoId }) => {
 	const [feedback, setFeedback] = useState('');
-	// const [demoId, setDemoId] = useState('');
+	const [comment, setComment] = useState('');
 	const [error, setError] = useState('');
 	const { id } = useParams();
 	const feedbackOptions = ['Very Good', 'Good', 'Average', 'Poor', 'Very Poor'];
@@ -16,26 +16,28 @@ const FeedbackButton = ({demoId, setDemoId }) => {
 	async function handleSubmit(e) {
 		e.preventDefault();
 		// if (demoId) {
-			try {
-				const token = localStorage.getItem('token');
+		try {
+			const token = localStorage.getItem('token');
 
-				const formData = new FormData();
-				formData.append('feedback', feedback);
-				formData.append('demoId', demoId);
+			const formData = new FormData();
+			formData.append('feedback', feedback);
+			formData.append('comment', comment);
+			formData.append('demoId', demoId);
 
-				await axios.post('http://localhost:8080/feedback/', formData, {
-					headers: {
-						'Content-Type': 'multipart/form-data',
-						Authorization: `Bearer ${token}`,
-					},
-				});
-			} catch (e) {
-				setError('Something went wrong while uploading feedback, please try again.');
-			}
+			await axios.post('http://localhost:8080/feedback/', formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+					Authorization: `Bearer ${token}`,
+				},
+			});
+		} catch (e) {
+			setError('Something went wrong while uploading feedback, please try again.');
+		}
 		// }else {setError('Demo ID niet beschikbaar')}
 	}
 
 	console.log('Feedback: ', feedback);
+	console.log('comment: ', comment);
 	console.log('DemoId: ', demoId);
 
 	return (
@@ -62,6 +64,15 @@ const FeedbackButton = ({demoId, setDemoId }) => {
 										</option>
 									))}
 								</select>
+							</div>
+							<div>
+								<label htmlFor="comment">Your Comment:</label>
+								<textarea
+									id="comment"
+									value={comment}
+									onChange={(e) => setComment(e.target.value)} // Handle comment input
+									placeholder="Enter your comments here"
+								/>
 							</div>
 							<button type="submit">Submit</button>
 						</form>

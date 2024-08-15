@@ -50,69 +50,77 @@ function SignUp() {
 
     return (
         <>
-            <h1>Registreren</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias cum debitis dolor dolore fuga id molestias qui quo unde?</p>
-            {/*4. Als het gelukt is, willen we een berichtje laten zien in de HTML, zoals:*/}
-            {createUserSuccess === true && (
-                <h2 className="message-success">U bent geregistreerd! Klik <Link to="/login">hier</Link> om in te loggen</h2>
-            )}
-            <form onSubmit={onSubmit}>
-                <label htmlFor="email-field">
-                    Email:
-                    <input
-                        type="email"
-                        id="email-field"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </label>
+            <div className='register-container'>
+                <div className='register-screen'>
+                        <div className='register-title'>
+                        <h1>Register</h1>
+                        </div>
+                        <p>We're excited to have you join our community.Just fill in your details below, and you'll be ready to start your journey with us. Let's get started!
+                        </p>
+                        {/*4. Als het gelukt is, willen we een berichtje laten zien in de HTML, zoals:*/}
+                        {createUserSuccess === true && (
+                            <h2 className="message-success">Succesfully registered! Click <Link to="/login">here</Link> to log in!</h2>
+                        )}
+                        <form onSubmit={onSubmit}>
+                            <label htmlFor="email-field">
+                                Email:
+                                <input
+                                    type="email"
+                                    id="email-field"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </label>
 
-                <label htmlFor="username-field">
-                    Gebruikersnaam:
-                    <input
-                        type="text"
-                        id="username-field"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                </label>
+                            <label htmlFor="username-field">
+                                Username:
+                                <input
+                                    type="text"
+                                    id="username-field"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                />
+                            </label>
 
-                <label htmlFor="password-field">
-                    Wachtwoord:
-                    <input
-                        type="password"
-                        id="password-field"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}/>
-                </label>
+                            <label htmlFor="password-field">
+                                Password:
+                                <input
+                                    type="password"
+                                    id="password-field"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}/>
+                            </label>
 
-                <label htmlFor="terms-and-conditions">
-                    <input
-                        type="checkbox"
-                        name="terms-and-conditions"
-                        id="terms-and-conditions"
-                        checked={checkedTerms}
-                        onChange={()=> toggleCheckedTerms(!checkedTerms)}
-                    />
-                    I agree with the terms and conditions!
-                </label>
+                            <label htmlFor="terms-and-conditions">
+                                <input
+                                    type="checkbox"
+                                    name="terms-and-conditions"
+                                    id="terms-and-conditions"
+                                    checked={checkedTerms}
+                                    onChange={() => toggleCheckedTerms(!checkedTerms)}
+                                />
+                                I agree with the terms and conditions!
+                            </label>
 
-                {/*Zorg dat de gebruiker niet nog een keer kan klikken terwijl we een request maken*/}
-                <button
-                    type="submit"
-                    className="form-button"
-                    disabled={!checkedTerms}
-                >
-                    {loading ? <Spinner className="loading-icon" /> : 'Create account!'}
-                </button>
-                {error && <p>{error}</p>}
-            </form>
-            <p>Heb je al een account? Je kunt je <Link to="/login">hier</Link> inloggen.</p>
-        </>
-    );
-}
+                            {/*Zorg dat de gebruiker niet nog een keer kan klikken terwijl we een request maken*/}
+                            <button
+                                type="submit"
+                                className="form-button"
+                                disabled={!checkedTerms}
+                            >
+                                {loading ? <Spinner className="loading-icon"/> : 'Create account!'}
+                            </button>
+                            {error && <p>{error}</p>}
+                        </form>
+                        <p>Already have an account? You can log in <Link to="/login">here</Link>.</p>
+                    </div>
+                </div>
+            </>
 
-export default SignUp;
+                    );
+                    }
+
+                    export default SignUp;
 
 
 

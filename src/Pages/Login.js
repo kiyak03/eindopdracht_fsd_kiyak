@@ -59,7 +59,7 @@ function SignIn() {
             <div className='login-container'>
                 <div className='login-screen'>
                     <div className='login-title'>
-                    <h1>Inloggen</h1>
+                    <h1>Login</h1>
                     </div>
 
                     <form onSubmit={onSubmit}>
@@ -74,7 +74,7 @@ function SignIn() {
                     </label>
 
                         <label htmlFor="password-field">
-                            Wachtwoord:
+                            Password:
                             <input
                                 type="password"
                                 id="password-field"
@@ -89,7 +89,7 @@ function SignIn() {
                             {loading ? <Spinner className="loading-icon" /> : 'Login!'}
                         </button>
                         {error && <span>{error}</span>}
-                        <span>Heb je nog geen account? <Link to="/register">Registreer</Link> je dan eerst.</span>
+                        <span>Don't have an account yet? <Link to="/register">Register</Link> first.</span>
                     </form>
 
                 </div>
