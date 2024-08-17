@@ -11,9 +11,10 @@ const FeedbackButton = ({demoId, setDemoId }) => {
 	const [error, setError] = useState('');
 	const { id } = useParams();
 	const feedbackOptions = ['Very Good', 'Good', 'Average', 'Poor', 'Very Poor'];
+	const [message, setMessage] = useState('');
 
 
-	async function handleSubmit(e) {
+	async function handleSubmit(e, closePopup) {
 		e.preventDefault();
 		// if (demoId) {
 		try {
@@ -30,8 +31,13 @@ const FeedbackButton = ({demoId, setDemoId }) => {
 					Authorization: `Bearer ${token}`,
 				},
 			});
+			setMessage('Feedback and comment submitted successfully!');
+			setFeedback(''); // Clear the feedback selection
+			setComment('');
+			closePopup();
 		} catch (e) {
 			setError('Something went wrong while uploading feedback, please try again.');
+			setMessage('')
 		}
 		// }else {setError('Demo ID niet beschikbaar')}
 	}
@@ -49,7 +55,7 @@ const FeedbackButton = ({demoId, setDemoId }) => {
 					</a>
 					<div className="header">Give your feedback on the mp3 file</div>
 					<div className="content">
-						<form onSubmit={handleSubmit}>
+						<form onSubmit={(e) => handleSubmit(e, close)}>
 							<div>
 								<label htmlFor="feedback">Your Feedback:</label>
 								<select
