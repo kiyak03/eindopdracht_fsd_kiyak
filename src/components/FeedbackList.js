@@ -28,10 +28,14 @@ function FeedbackList({ demoId }) {
 			<h3>Feedback:</h3>
 			<ul>
 				{feedbackList.map((feedback) => (
-					<li key={feedback.id}>{feedback.comment}</li>
+				// 	<li key={feedback.id}>{feedback.comment}</li>
+				// ))}
+					<li key={feedback.id}>
+						<strong>Feedback:</strong> {feedback.feedback}<br/>
+						<strong>Comment:</strong> {feedback.comment}
+					</li>
 				))}
 			</ul>
-
 		</div>
 	);
 }
